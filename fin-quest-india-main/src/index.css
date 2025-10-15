@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* FinXplore Dark Theme - Orange & Black */
+    --background: 0 0% 7%;
+    --foreground: 36 100% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 36 100% 95%;
+    --card-glass: 0 0% 12%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 36 100% 95%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 10%;
+    --primary-glow: 38 100% 60%;
+
+    --secondary: 30 80% 40%;
+    --secondary-foreground: 36 100% 95%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 36 40% 70%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 36 100% 95%;
+
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 10%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom FinXplore tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(38 92% 50%), hsl(30 100% 55%));
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 10%));
+    --shadow-glow: 0 0 30px hsl(38 92% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl border border-border/50;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
