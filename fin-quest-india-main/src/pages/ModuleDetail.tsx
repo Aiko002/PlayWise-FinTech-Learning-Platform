@@ -115,13 +115,15 @@ const ModuleDetail = () => {
                     </div>
                   </div>
                 </div>
-                <Button 
-                  size="sm" 
-                  disabled={isLocked}
-                  className={isCompleted ? "bg-success hover:bg-success/80" : ""}
-                >
-                  {isCompleted ? "Review" : isLocked ? "Locked" : "Start"}
-                </Button>
+                <Link to={`/learn/${module.id}/lesson/${lesson.id}/play`}>
+                  <Button 
+                    size="sm" 
+                    disabled={isLocked}
+                    className={isCompleted ? "bg-success hover:bg-success/80" : ""}
+                  >
+                    {isCompleted ? "Review" : isLocked ? "Locked" : "Start"}
+                  </Button>
+                </Link>
               </div>
             </div>
           );

@@ -5,6 +5,7 @@ import StatCard from "@/components/StatCard";
 import ModuleCard from "@/components/ModuleCard";
 import { modules } from "@/data/modules";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   TrendingUp as TrendingUpIcon, 
   Bitcoin, 
@@ -25,6 +26,7 @@ const iconMap: Record<string, any> = {
 
 const Index = () => {
   const featuredModules = modules.slice(0, 4);
+  const { isAuthenticated } = useAuth();
   
   const achievements = [
     "Raj just earned 'Crypto Master' badge!",
@@ -55,7 +57,7 @@ const Index = () => {
               India's First Gamified Platform for Stocks, Crypto, Forex & Options Awareness
             </p>
             <div className="flex flex-wrap gap-4 justify-center mb-12">
-              <Link to="/learn">
+              <Link to={isAuthenticated ? "/learn" : "/auth?mode=login&redirectTo=%2Flearn"}>
                 <Button size="lg" className="bg-primary hover:bg-primary-glow text-lg gap-2 animate-glow-pulse">
                   Start Learning <Zap className="w-5 h-5" />
                 </Button>
@@ -118,17 +120,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why FinXplore */}
+      {/* Why PlayWise */}
       <section className="container mx-auto px-4 mb-20">
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
-          Why <span className="gradient-text">FinXplore?</span>
+          Why <span className="gradient-text">PlayWise?</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="glass-card p-8 rounded-xl text-center hover-lift">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-destructive/20 flex items-center justify-center">
               <span className="text-3xl">⚠️</span>
             </div>
-            <h3 className="text-xl font-heading font-bold mb-3">The Problem</h3>
+          <h3 className="text-xl font-heading font-bold mb-3">The Problem</h3>
             <p className="text-muted-foreground">
               75% of Indian crypto investors lost money due to lack of awareness
             </p>
@@ -137,16 +139,16 @@ const Index = () => {
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-success/20 flex items-center justify-center">
               <span className="text-3xl">💡</span>
             </div>
-            <h3 className="text-xl font-heading font-bold mb-3">The Solution</h3>
+          <h3 className="text-xl font-heading font-bold mb-3">The Solution</h3>
             <p className="text-muted-foreground">
-              Learn through real-world scenarios, not boring textbooks
+            Learn through real-world scenarios, not boring textbooks
             </p>
           </div>
           <div className="glass-card p-8 rounded-xl text-center hover-lift">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
               <span className="text-3xl">🚀</span>
             </div>
-            <h3 className="text-xl font-heading font-bold mb-3">The Impact</h3>
+          <h3 className="text-xl font-heading font-bold mb-3">The Impact</h3>
             <p className="text-muted-foreground">
               Join 12K+ Indians building wealth smartly
             </p>
@@ -160,7 +162,7 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold">
             Featured <span className="gradient-text">Learning Paths</span>
           </h2>
-          <Link to="/learn">
+          <Link to={isAuthenticated ? "/learn" : "/auth?mode=login&redirectTo=%2Flearn"}>
             <Button variant="outline" className="gap-2 border-primary text-primary">
               View All <ArrowRight className="w-4 h-4" />
             </Button>
@@ -214,7 +216,7 @@ const Index = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of Indians learning to navigate stocks, crypto, and forex safely
           </p>
-          <Link to="/learn">
+          <Link to={isAuthenticated ? "/learn" : "/auth?mode=login&redirectTo=%2Flearn"}>
             <Button size="lg" className="bg-primary hover:bg-primary-glow text-lg gap-2">
               Start Learning Now <ArrowRight className="w-5 h-5" />
             </Button>
