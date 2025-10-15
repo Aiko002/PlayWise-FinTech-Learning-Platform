@@ -2,6 +2,7 @@ import { LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Star, Users, Clock } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ModuleCardProps {
   id: string;
@@ -32,6 +33,8 @@ const ModuleCard = ({
     Advanced: "bg-destructive/20 text-destructive",
     Expert: "bg-purple-500/20 text-purple-400",
   };
+
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className="glass-card p-6 rounded-xl hover-lift group">
@@ -66,7 +69,7 @@ const ModuleCard = ({
 
       <div className="flex items-center justify-between">
         <span className="text-sm text-muted-foreground">{lessonCount} Lessons</span>
-        <Link to={`/learn/${id}`}>
+        <Link to={isAuthenticated ? `/learn/${id}` : `/auth?mode=login&redirectTo=%2Flearn%2F${encodeURIComponent(id)}`}>
           <Button size="sm" className="bg-primary hover:bg-primary-glow">
             Start Learning
           </Button>

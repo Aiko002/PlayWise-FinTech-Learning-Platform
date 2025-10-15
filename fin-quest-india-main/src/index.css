@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* FinXplore Dark Theme - Orange & Black */
+    /* PlayWise Dark Theme - Orange & Black */
     --background: 0 0% 7%;
     --foreground: 36 100% 95%;
 
@@ -44,7 +44,7 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    /* Custom FinXplore tokens */
+    /* Custom PlayWise tokens */
     --gradient-primary: linear-gradient(135deg, hsl(38 92% 50%), hsl(30 100% 55%));
     --gradient-hero: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 10%));
     --shadow-glow: 0 0 30px hsl(38 92% 50% / 0.3);

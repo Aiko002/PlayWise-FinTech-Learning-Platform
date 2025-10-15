@@ -2,10 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Zap } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -20,6 +22,14 @@ const Navigation = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const resolvePath = (path: string) => {
+    if (path.startsWith("/learn") && !isAuthenticated) {
+      const redirectTo = encodeURIComponent(path);
+      return `/auth?mode=login&redirectTo=${redirectTo}`;
+    }
+    return path;
+  };
+
   return (
     <nav className="sticky top-0 z-50 glass-card border-b border-border/50">
       <div className="container mx-auto px-4 py-4">
@@ -30,14 +40,14 @@ const Navigation = () => {
               <Zap className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className="text-2xl font-heading font-bold gradient-text hidden sm:block">
-              FinXplore
+              PlayWise
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <Link key={item.path} to={item.path}>
+              <Link key={item.path} to={resolvePath(item.path)}>
                 <Button
                   variant={isActive(item.path) ? "default" : "ghost"}
                   size="sm"
@@ -74,7 +84,7 @@ const Navigation = () => {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={item.path}
+                to={resolvePath(item.path)}
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-2 rounded-lg transition-colors ${
                   isActive(item.path)
